@@ -4,37 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Show Profile</title>
 </head>
 <body>
-    <br>
-    <a href="http://127.0.0.1:5000/dashboard/{{x}}">Shows</a>
-    <br>
-    <a href="http://127.0.0.1:5000/">LOGOUT</a>
-    <h1>SHOW</h1>
-    {{name}}
-    <h2>
-        {% for i in total_likes %}
-            LIKED BY {{i.show_id}}
-        {%endfor%}
-    </h2>
-    <br>
-    <hr>
+    <a class="btn btn-primary" href="http://127.0.0.1:5000/dashboard/{{x}}" role="button" id  ='login'>TVShows</a>
+    <a class="btn btn-outline-danger" href="http://127.0.0.1:5000/" role="button" id="logout">Logout</a>
+    <div id="showid">
+        <h2>
+            {% for i in total_likes %}
+                LIKED BY: {{i.show_id}} user(s)
+            {%endfor%}
+        </h2>
+        <br>
+        <hr>
 
-    
-    {% for i in it %}
-        <h2> {{i.title}} </h2>
-    
-        <h3>
-            network:
-        </h3>
-        {{i.network}}
-        <h3>release:</h3>
-        {{i.release}}
-        <h3>description:</h3>
-        {{i.description}}
-        <p> Posted by: {{i.firstname}}  {{i.lastname}} </p>
-        <a href="http://127.0.0.1:5000/del/{{i.id}}">Purchase</a>
-    {%endfor%}
+        
+        {% for i in it %}
+            <h2 id ='showtitle'> {{i.title}} </h2>
+            <h3>
+                network:
+            </h3>
+            {{i.network}}
+            <h3>Release Date:</h3>
+            {{i.release}}
+            <h3>description:</h3>
+            {{i.description}}
+            <p> Posted by: {{i.firstname}}  {{i.lastname}} </p>
+        {%endfor%}
+    </div>
 </body>
 </html>

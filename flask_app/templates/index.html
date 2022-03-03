@@ -7,70 +7,73 @@
 <meta name="Description" content="Enter your description here"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<title>Title</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<title>Your Shows</title>
 </head>
 <body>
-    {% with messages = get_flashed_messages(category_filter=['create']) %}
-                {% if messages %}
-                    {% for message in messages %}
-                        <p style="color: red; font-weight: bold;">{{message}}</p>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-            {% with messages = get_flashed_messages(category_filter=['success']) %}
-                {% if messages %}
-                    {% for message in messages %}
-                        <p style="color: rgb(11, 104, 34); font-weight: bold;">{{message}}</p>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-    <form action="/create_user" method="POST">
-        <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text">Firstname</span>
-            <input type="text" class="form-control" name='firstname'>
+    <h1 id="first-header">Your Shows ! </h1>
+    <div id="container">
+        <div id="box" class="bg-dark">
+            <h2>Create Account</h2>
+            {% with messages = get_flashed_messages(category_filter=['create']) %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p style="color: red; font-weight: bold;">{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    {% with messages = get_flashed_messages(category_filter=['success']) %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p style="color: rgb(11, 104, 34); font-weight: bold;">{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+            <form action="/create_user" method="POST">
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text">Firstname</span>
+                    <input type="text" class="form-control" name='firstname'>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text">Lastname</span>
+                    <input type="text" class="form-control" name="lastname">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+                    <input type="text" class="form-control" name="email">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
+                    <input type="password" class="form-control" name="password">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Verify Password</span>
+                    <input type="password" class="form-control" name="password2">
+                </div>
+                <button type="submit" class="btn btn-success">Create</button>
+            </form>
         </div>
-        <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text">Lastname</span>
-            <input type="text" class="form-control" name="lastname">
-        </div>
-        <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
-            <input type="text" class="form-control" name="email">
-        </div>
-        <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
-            <input type="password" class="form-control" name="password">
-        </div>
-        <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-sm">Verify Password</span>
-            <input type="password" class="form-control" name="password2">
-        </div>
-        <button type="submit">Register!</button>
-    </form>
-</div>
-<div>
-    <h2>LOGIN HERE</h2>
-    {% with messages = get_flashed_messages(category_filter=['login']) %}
+        <div id="box2" class="bg-dark">
+            <h2>LOGIN HERE</h2>
+            {% with messages = get_flashed_messages(category_filter=['login']) %}
             {% if messages %}
-                {% for message in messages %}
-                    <p style="color: red; font-weight: bold;">{{message}}</p>
-                {% endfor %}
+            {% for message in messages %}
+            <p style="color: red; font-weight: bold;">{{message}}</p>
+            {% endfor %}
             {% endif %}
-        {% endwith %}
-    <form action="/login" method='POST'>
-        <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text" >Email</span>
-            <input type="text" class="form-control" name="email">
+            {% endwith %}
+            <form action="/login" method='POST'>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" >Email</span>
+                    <input type="text" class="form-control" name="email">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" >Password</span>
+                    <input type="password" class="form-control" name="password">
+                </div>
+                <button type="submit" class="btn btn-success">Login</button>
+            </form>
         </div>
-        <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text" >Password</span>
-            <input type="password" class="form-control" name="password">
-        </div>
-        <button type="submit">login</button>
-    </form>
-</div>
-</body>
-</html>
+    </div>
 </body>
 </html>

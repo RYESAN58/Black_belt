@@ -7,42 +7,46 @@
 <meta name="Description" content="Enter your description here"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<title>Title</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<title>Show Dashboard</title>
 </head>
 <body>
-    Howdy {{y}}
-    <br>
-    <a href="http://127.0.0.1:5000/make">Add New Show</a>
-    <br>
-    <a href="http://127.0.0.1:5000/">LOGOUT</a>
-    
-<h1>All TV Shows</h1>
-    <ul>
-        {% for i in all%}
-            <ul>
-                <li>
-                    {{i.title}} - {{i.network}}
-                    
-                </li>
 
-                <li>
-                    {{i.release}}
-                </li>
-            </ul>
-            {% if id == i.user %}
-                <a href="http://127.0.0.1:5000/see/{{i.shownum}}">Show</a> |  <a href="http://127.0.0.1:5000/edit/{{i.shownum}}">Edit</a> <a href="http://127.0.0.1:5000/del/{{i.shownum}}">delete</a>
-            {% else %}
-                <a href="http://127.0.0.1:5000/see/{{i.shownum}}">Show</a> 
-                {% if i.shownum in liked_by  %}
-                    <a href="http://127.0.0.1:5000/delete/{{i.shownum}}/{{id}}">Unlike</a>
-                {%else%}
-                    <a href="http://127.0.0.1:5000/like/{{i.shownum}}/{{id}}">like</a>
-                {% endif %}
-            {% endif %}
-            
-            <hr>
-        {%endfor%}
-    </ul>
+    <h1>Howdy, {{y}}!!!!</h1>
+    <br>
+    <a class="btn btn-outline-danger" href="http://127.0.0.1:5000/" role="button" id="logout">Logout</a>
+    <h2>All TV Shows</h2>
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Network</th>
+                <th scope="col">Release Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        {% for i in all%}
+            <tbody>
+                <tr>
+                    <th scope="row">{{i.title}}</th>
+                    <td>{{i.network}}</td>
+                    <td>{{i.release}}</td>
+                    <td>
+                        {% if id == i.user %}
+                            <a href="http://127.0.0.1:5000/see/{{i.shownum}}">Show</a> |  <a href="http://127.0.0.1:5000/edit/{{i.shownum}}">Edit</a> | <a href="http://127.0.0.1:5000/del/{{i.shownum}}">delete</a>
+                        {% else %}
+                            <a href="http://127.0.0.1:5000/see/{{i.shownum}}">Show</a> |
+                            {% if i.shownum in liked_by  %}
+                                <a href="http://127.0.0.1:5000/delete/{{i.shownum}}/{{id}}">Unlike</a>
+                            {%else%}
+                                <a href="http://127.0.0.1:5000/like/{{i.shownum}}/{{id}}">like</a>
+                        {% endif %}
+                    {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+    <a class="btn btn-primary" href="http://127.0.0.1:5000/make" role="button" id="addshow">Add New Show</a>
 </body>
 </html>
