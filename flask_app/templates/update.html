@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Title</title>
+</head>
+<body>
+    <a href="http://127.0.0.1:5000/dashboard/{{x}}">dashboard</a>
+    <a href="http://127.0.0.1:5000/">Logout</a>
+    <br>
+    {{name}}
+    <h1>Edit Show!</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red; font-weight: bold;">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+{% endwith %}
+{% for i in update%}
+<form action="/update_rec" method="POST">
+    <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">Title</span>
+        <input type="text" class="form-control" name="title" value="{{i.title}}">
+    </div>
+    <br>
+    <div class="input-group flex-nowrap">
+        <span class="input-group-text" >network!</span>
+        <input type="text" class="form-control" name= 'network' value="{{i.network}}">
+    </div>
+    <br>
+    <div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" >release</span>
+            <input type="date" class="form-control" name="release" value="{{i.release}}">
+        </div>
+    </div>
+    <br>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" >description</span>
+        <input class="form-control" name="description" value="{{i.description}}">
+    </div>
+    <div>
+        <span></span>
+    </div>
+    <input type="hidden" value="{{y}}" name="id">
+    <button type="submit">Update</button>
+</form>
+
+    {% endfor %}
+</body>
+</html>
