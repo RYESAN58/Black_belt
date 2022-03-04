@@ -33,13 +33,13 @@
                     <td>{{i.release}}</td>
                     <td>
                         {% if id == i.user %}
-                            <a href="http://127.0.0.1:5000/see/{{i.shownum}}">Show</a> |  <a href="http://127.0.0.1:5000/edit/{{i.shownum}}">Edit</a> | <a href="http://127.0.0.1:5000/del/{{i.shownum}}">delete</a>
+                            <a href="http://127.0.0.1:5000/see/{{i.shownum}}">Show</a> |  <a href="http://127.0.0.1:5000/edit/{{i.shownum}}">Edit</a> | <a href="http://127.0.0.1:5000/del/{{i.shownum}}">Delete</a>
                         {% else %}
                             <a href="http://127.0.0.1:5000/see/{{i.shownum}}">Show</a> |
                             {% if i.shownum in liked_by  %}
                                 <a href="http://127.0.0.1:5000/delete/{{i.shownum}}/{{id}}">Unlike</a>
                             {%else%}
-                                <a href="http://127.0.0.1:5000/like/{{i.shownum}}/{{id}}">like</a>
+                                <a href="http://127.0.0.1:5000/like/{{i.shownum}}/{{id}}">Like</a>
                         {% endif %}
                     {% endif %}
                     </td>
